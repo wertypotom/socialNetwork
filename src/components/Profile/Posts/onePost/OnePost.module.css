@@ -1,0 +1,11 @@
+.post {
+  background-color: yellow;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px whitesmoke;
+}
+
+.post img {
+  width: 100px;
+  height: 80px;
+  border-radius: 50%;
+}

@@ -1,0 +1,45 @@
+.dialogContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 5px;
+  grid-area: content;
+  background-color: violet;
+}
+
+.contacts {
+  background-color: paleturquoise;
+  padding: 20px 10px;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: 70px auto;
+  background-color: beige;
+  border-radius: 5%;
+  height: 50px;
+  margin: 2px;
+}
+
+.contact .span {
+  padding-top: 10px;
+  color: yellow;
+}
+
+.contact .profileImage {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.messages {
+  display: grid;
+  background-color: paleturquoise;
+  padding: 20px 10px;
+}
+
+.message {
+  justify-self: stretch;
+  background-color: bisque;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}

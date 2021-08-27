@@ -1,0 +1,39 @@
+.navBarSection {
+  display: grid;
+  grid-area: nav;
+  background-color: yellow;
+}
+
+.navBarSection .nav {
+  padding: 20px;
+}
+
+.navBarSection .navContacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  align-self: end;
+  grid-row-gap: 2px;
+  background-color: #f0e766;
+}
+
+.navBarSection .navContacts img {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.text {
+  padding-bottom: 10px;
+}
+
+.text a {
+  color: green;
+  font-size: medium;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.text a.active {
+  color: red;
+}

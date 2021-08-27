@@ -1,0 +1,9 @@
+.profilePage {
+  display: grid;
+  grid-area: content;
+  grid-template-rows: auto auto;
+  grid-row-gap: 5px;
+  grid-template-areas:
+    "ProfileInfo"
+    "Messages";
+}

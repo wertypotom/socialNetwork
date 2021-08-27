@@ -1,0 +1,7 @@
+.ProfileInfoPage {
+  grid-area: ProfileInfo;
+}
+
+.content_image {
+  width: 800px;
+}
