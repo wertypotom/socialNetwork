@@ -21,6 +21,7 @@ function App(props) {
             path="/dialogs"
             render={() => (
               <DialogsContainer
+
               // contactsData={contactsData}
               // messageData={messageData}
               // messageTextAreaData={messageTextAreaData}
