@@ -1,21 +1,22 @@
 import { connect } from "react-redux";
-import ShowContext from "../../../ShowContext";
 import Posts from "./Posts";
 
-const PostsContainer = () => {
-  return (
-    <ShowContext.Consumer>
-      {(store) => {
-        return <Posts postData={store.getState().ProfilePage.postData} />;
-      }}
-    </ShowContext.Consumer>
-  );
+// const PostsContainer = () => {
+//   return (
+//     <ShowContext.Consumer>
+//       {(store) => {
+//         return <Posts postData={store.getState().ProfilePage.postData} />;
+//       }}
+//     </ShowContext.Consumer>
+//   );
+// };
+
+const mapStateToConnect = (state) => {
+  return {
+    postData: state.ProfilePage.postData,
+  };
 };
 
-// const mapStateToProps = (state) => ({
-//   postData: state.ProfilePage.postData,
-// });
-
-// const PostsContainer = connect(mapStateToProps)(Posts);
+const PostsContainer = connect(mapStateToConnect)(Posts);
 
 export default PostsContainer;

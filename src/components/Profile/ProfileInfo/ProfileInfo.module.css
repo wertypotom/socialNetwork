@@ -1,7 +1,39 @@
 .ProfileInfoPage {
   grid-area: ProfileInfo;
+  display: grid;
+  grid-gap: 5px;
 }
 
 .content_image {
   width: 800px;
+}
+
+.anyUserProfile {
+  display: grid;
+  grid-template-columns: 20% auto;
+  background-color: aquamarine;
+}
+
+.leftPartOfAnyUserProfile {
+  border-right: black dashed thin;
+  justify-self: center;
+  padding: 15px;
+}
+.rightPartOfAnyUserProfile {
+}
+
+.aboutWorkSearch {
+  display: grid;
+  grid-template-columns: 2fr 8fr;
+  border-bottom: black dashed thin;
+  padding: 15px;
+}
+
+.aboutWorkSearch img {
+  height: 40px;
+}
+.aboutContacts {
+  display: grid;
+  grid-template-columns: 2fr 8fr;
+  padding: 15px;
 }

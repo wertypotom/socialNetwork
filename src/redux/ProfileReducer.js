@@ -1,5 +1,10 @@
+import { usersAPI, profileAPI } from "../api/api";
+
 const ADD_POST = "ADD-POST";
-const CHANGE_POST = "CHANGE-POST-DATA";
+const SET_USER_DATA = "SET_USER_DATA";
+const RESET_USER_DATA = "RESET_USER_DATA";
+const SET_STATUS = "SET_STATUS";
+const DELETE_POST = "DELETE_POST";
 
 const initialState = {
   postData: [
@@ -26,34 +31,94 @@ const initialState = {
     },
   ],
   textAreaData: "",
+  userData: null,
+  status: "",
 };
 
 const profileReducer = (state = initialState, action) => {
   if (action.type === ADD_POST) {
-    const newPost = {
-      id: 4,
-      message: state.textAreaData,
-      likes: "0",
-      imgUrl:
-        "https://yt3.ggpht.com/ytc/AKedOLQTOrbuh25vkoon4ROhjjbJXX3jVrEaAYK6BDUB=s900-c-k-c0x00ffffff-no-rj",
+    return {
+      ...state,
+      postData: [
+        ...state.postData,
+        {
+          id: new Date().getTime().toString(),
+          message: action.text,
+          likes: "0",
+          imgUrl:
+            "https://yt3.ggpht.com/ytc/AKedOLQTOrbuh25vkoon4ROhjjbJXX3jVrEaAYK6BDUB=s900-c-k-c0x00ffffff-no-rj",
+        },
+      ],
     };
-    state.postData.push(newPost);
-    state.textAreaData = " ";
-    return state;
   }
-  if (action.type === CHANGE_POST) {
-    state.textAreaData = action.text;
-    return state;
+  if (action.type === SET_USER_DATA) {
+    return {
+      ...state,
+      userData: action.userData,
+    };
   }
-
+  if (action.type === RESET_USER_DATA) {
+    return {
+      ...state,
+      userData: null,
+    };
+  }
+  if (action.type === SET_STATUS) {
+    return {
+      ...state,
+      status: action.status,
+    };
+  }
+  if (action.type === DELETE_POST) {
+    return {
+      ...state,
+      postData: state.postData.filter((post) => {
+        return post.id !== action.postID;
+      }),
+    };
+  }
   return state;
 };
 
-export const changePostActionCreator = (text) => {
-  return { type: CHANGE_POST, text: text };
+export const addPostActionCreator = (text) => {
+  return { type: ADD_POST, text };
 };
-export const addPostActionCreator = () => {
-  return { type: ADD_POST };
+export const setUserData = (userData) => {
+  return { type: SET_USER_DATA, userData };
+};
+export const resetUserData = () => {
+  return { type: RESET_USER_DATA };
+};
+export const deletePost = (postID) => {
+  return { type: DELETE_POST, postID };
+};
+
+export const setUserStatus = (status) => {
+  return { type: SET_STATUS, status };
+};
+
+export const resetUserDataAC = () => {
+  return (dispatch) => {
+    dispatch(resetUserData());
+  };
+};
+
+export const loadSpecificUserDataOnMainPageTC =
+  (userID) => async (dispatch) => {
+    const data = await usersAPI.loadSpecificUserDataOnMainPage(userID);
+    dispatch(setUserData(data));
+  };
+
+export const getUserStatusTC = (userID) => async (dispatch) => {
+  const response = await profileAPI.getUserStatus(userID);
+  dispatch(setUserStatus(response.data));
+};
+
+export const updateMyStatusTC = (status) => async (dispatch) => {
+  const response = await profileAPI.updateStatus(status);
+  if (response.data.resultCode === 0) {
+    dispatch(setUserStatus(status));
+  }
 };
 
 export default profileReducer;

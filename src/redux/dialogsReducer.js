@@ -1,5 +1,4 @@
 const ADD_MESSAGE = "ADD-MESSAGE";
-const CHANGE_MESSAGE = "CHANGE-MESSAGE";
 
 const initialState = {
   contactsData: [
@@ -38,32 +37,26 @@ const initialState = {
     { id: 3, text: "I am good" },
     { id: 4, text: "What are you doing" },
   ],
-
-  messageTextAreaData: "",
 };
 
 const dialogsReducer = (state = initialState, action) => {
   if (action.type === ADD_MESSAGE) {
-    const newMessage = {
-      id: 5,
-      text: state.messageTextAreaData,
+    return {
+      ...state,
+      messageData: [
+        ...state.messageData,
+        {
+          id: new Date().getTime().toString(),
+          text: action.text,
+        },
+      ],
     };
-    state.messageData.push(newMessage);
-    state.messageTextAreaData = "";
-    return state;
-  }
-  if (action.type === CHANGE_MESSAGE) {
-    state.messageTextAreaData = action.text;
-    return state;
   }
   return state;
 };
 
-export const changeMessageActionCreator = (text) => {
-  return { type: CHANGE_MESSAGE, text: text };
-};
-export const addMessageActionCreator = () => {
-  return { type: ADD_MESSAGE };
+export const addMessageActionCreator = (text) => {
+  return { type: ADD_MESSAGE, text };
 };
 
 export default dialogsReducer;

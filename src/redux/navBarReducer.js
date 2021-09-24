@@ -1,11 +1,9 @@
-const ADD_USER_TO_BOARD = "ADD_USER_TO_BOARD";
-
 const initialState = {
   links: [
     { id: 1, text: "Profile", path: "/profile" },
     { id: 2, text: "Messages", path: "/dialogs" },
-    { id: 3, text: "News", path: "/news" },
-    { id: 4, text: "Music", path: "/music" },
+    { id: 3, text: "Users", path: "/users" },
+    { id: 4, text: "Login", path: "/login" },
     { id: 5, text: "Settings", path: "/settings" },
   ],
   usersData: [

@@ -4,31 +4,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App.jsx";
-import { Provider } from "react-redux";
 import ShowContext from "./ShowContext";
+import { Provider } from "react-redux";
+import SocialNetworkApp from "./App";
 
-const rerenderEntireTree = () => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <ShowContext.Provider value={store}>
-        <App
-
-        // dispatch={store.dispatch.bind(store)}
-        // changePostData={store.changePostData.bind(store)}
-        // addPost={store.addPost.bind(store)}
-        // addMessageText={store.addMessageText.bind(store)}
-        // changeMessageText={store.changeMessageText.bind(store)}
-        />
-      </ShowContext.Provider>
-    </React.StrictMode>,
-    document.getElementById("root")
-  );
-};
-
-rerenderEntireTree();
-
-// store.subscribe(rerenderEntireTree)
-
-store.subscribe(() => {
-  rerenderEntireTree();
-});
+ReactDOM.render(<SocialNetworkApp />, document.getElementById("root"));

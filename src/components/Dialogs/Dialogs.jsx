@@ -2,20 +2,31 @@ import React from "react";
 import cl from "./Dialogs.module.css";
 import { NavLink } from "react-router-dom";
 
-const Dialogs = ({
-  addMessage,
-  changeMessageData,
-  contactsData,
-  messageData,
-  messageTextAreaData,
-}) => {
-  const onAddMessage = () => {
-    addMessage();
-  };
+import { Field, reduxForm, reset } from "redux-form";
+import { MessageTextArea } from "../../Validators/FieldLevelValidators/FieldLevelValidators";
 
-  const onChangeMessageData = (e) => {
-    const text = e.target.value;
-    changeMessageData(text);
+const InputForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <Field component={MessageTextArea} name="message" type="text" />
+      <div>
+        <button disabled={props.invalid || props.submitting || props.pristine}>
+          text me
+        </button>
+      </div>
+    </form>
+  );
+};
+
+const InputMessageComponent = reduxForm({
+  form: "login",
+})(InputForm);
+
+const Dialogs = ({ addMessage, contactsData, messageData }) => {
+  const submit = (values, dispatch) => {
+    console.log(values);
+    addMessage(values.message);
+    dispatch(reset("login"));
   };
 
   return (
@@ -44,18 +55,7 @@ const Dialogs = ({
           );
         })}
 
-        <textarea
-          // ref={windowElement}
-          placeholder="enter your message..."
-          value={messageTextAreaData}
-          onChange={onChangeMessageData}
-          cols="30"
-          rows="5"
-        />
-
-        <div>
-          <button onClick={onAddMessage}>text me</button>
-        </div>
+        <InputMessageComponent onSubmit={submit} />
       </div>
     </section>
   );

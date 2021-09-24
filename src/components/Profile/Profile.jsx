@@ -7,14 +7,11 @@ const Profile = (props) => {
   return (
     <section className={cl.profilePage}>
       <ProfileInfoContainer
-      // textAreaData={textAreaData}
-      // dispatch={dispatch}
-      // addPost={addPost}
-      // changePostData={changePostData}
+        userData={props.userData}
+        status={props.status}
+        updateStatus={props.updateStatus}
       />
-      <PostsContainer
-      // postData={postData}
-      />
+      <PostsContainer />
     </section>
   );
 };

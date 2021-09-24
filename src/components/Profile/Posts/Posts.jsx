@@ -2,7 +2,7 @@ import React from "react";
 import cl from "./Posts.module.css";
 import OnePost from "./onePost/OnePost";
 
-const Posts = (props) => {
+const Posts = React.memo((props) => {
   return (
     <div className={cl.allPosts}>
       <h2>My posts</h2>
@@ -12,6 +12,6 @@ const Posts = (props) => {
       })}
     </div>
   );
-};
+});
 
 export default Posts;
